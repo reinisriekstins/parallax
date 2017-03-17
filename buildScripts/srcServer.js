@@ -3,6 +3,7 @@ import path from 'path';
 import open from 'open';
 import webpack from 'webpack';
 import config from '../webpack.config.dev';
+import proxy from 'http-proxy-middleware';
 
 /* eslint-disable no-console */
 
@@ -14,6 +15,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
 }));
+
+app.use('/', proxy({target: 'http://localhost:3001/', changeOrigin: true}))
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../src/index.html'));
