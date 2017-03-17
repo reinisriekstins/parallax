@@ -7,7 +7,9 @@ const
   $backbird = $('.back-bird'),
   $forebird = $('.fore-bird'),
   $clothesPics = $('.clothes-pics'),
-  $clothesPicsFigure = $('.clothes-pics figure')
+  $clothesPicsFigure = $('.clothes-pics figure'),
+  $largeWindow = $('.large-window'),
+  $windowTint = $('.window-tint')
 
 gridElementFadeIn($window.scrollTop())
 
@@ -35,6 +37,16 @@ function gridElementFadeIn(wScroll) {
       setTimeout(() => {
         $clothesPicsFigure.eq(i).addClass('is-showing')
       }, 150 * (i+1))
+    })
+  }
+
+  if (wScroll > $largeWindow.offset().top - $window.height()) {
+    $largeWindow.css({
+      'background-position': `center ${wScroll - $largeWindow.offset().top }px`
+    })
+
+    $windowTint.css({
+      opacity: (wScroll - $largeWindow.offset().top + 400) / (wScroll / 5)
     })
   }
 }
