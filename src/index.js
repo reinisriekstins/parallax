@@ -23,6 +23,7 @@ $window.scroll(() => {
     transform: `translate(0px, -${wScroll/50}%)`
   })
 
+  // image grid fade in effect
   if (wScroll > $clothesPics.offset().top - $window.height() / 1.5) {
     $clothesPicsFigure.each((i) => {
 
