@@ -5,11 +5,14 @@ const
   $window = $(window),
   $logo = $('.logo'),
   $backbird = $('.back-bird'),
-  $forebird = $('.fore-bird')
+  $forebird = $('.fore-bird'),
+  $clothesPics = $('.clothes-pics'),
+  $clothesPicsFigure = $('.clothes-pics figure')
 
 $window.scroll(() => {
   var wScroll = $window.scrollTop()
 
+  // parallax for top logo, background and foreground birds
   $logo.css({
     transform: `translate(0px, ${wScroll/2}%)`
   })
@@ -19,4 +22,14 @@ $window.scroll(() => {
   $forebird.css({
     transform: `translate(0px, -${wScroll/50}%)`
   })
+
+  if (wScroll > $clothesPics.offset().top - $window.height() / 1.5) {
+    $clothesPicsFigure.each((i) => {
+
+      setTimeout(() => {
+        $clothesPicsFigure.eq(i).addClass('is-showing')
+      }, 150 * (i+1))
+    })
+  }
+
 })
