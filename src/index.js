@@ -9,6 +9,8 @@ const
   $clothesPics = $('.clothes-pics'),
   $clothesPicsFigure = $('.clothes-pics figure')
 
+gridElementFadeIn($window.scrollTop())
+
 $window.scroll(() => {
   var wScroll = $window.scrollTop()
 
@@ -23,7 +25,10 @@ $window.scroll(() => {
     transform: `translate(0px, -${wScroll/50}%)`
   })
 
-  // image grid fade in effect
+  gridElementFadeIn(wScroll)
+})
+
+function gridElementFadeIn(wScroll) {
   if (wScroll > $clothesPics.offset().top - $window.height() / 1.5) {
     $clothesPicsFigure.each((i) => {
 
@@ -32,5 +37,4 @@ $window.scroll(() => {
       }, 150 * (i+1))
     })
   }
-
-})
+}
