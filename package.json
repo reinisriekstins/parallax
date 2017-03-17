@@ -25,6 +25,7 @@
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
+    "jquery": "^3.2.0",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
