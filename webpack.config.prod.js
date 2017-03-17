@@ -61,7 +61,9 @@ export default {
   module: {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('css?sourceMap')}
+      {test: /\.css$/, loader: ExtractTextPlugin.extract('css?sourceMap')},
+      // this is untested, no idea if it works, probably doesn't
+      {test: /\.(sass|scss)$/, loader: ExtractTextPlugin.extract(['css-leader','sass-loader?sourceMap'])}
     ]
   }
 };
