@@ -9,7 +9,11 @@ const
   $clothesPics = $('.clothes-pics'),
   $clothesPicsFigure = $('.clothes-pics figure'),
   $largeWindow = $('.large-window'),
-  $windowTint = $('.window-tint')
+  $windowTint = $('.window-tint'),
+  $blogPosts = $('.blog-posts'),
+  $post1 = $('.post-1'),
+  $post2 = $('.post-2'),
+  $post3 = $('.post-3')
 
 gridElementFadeIn($window.scrollTop())
 
@@ -28,9 +32,11 @@ $window.scroll(() => {
   })
 
   gridElementFadeIn(wScroll)
+
 })
 
 function gridElementFadeIn(wScroll) {
+  // controls fade in of clothing grid
   if (wScroll > $clothesPics.offset().top - $window.height() / 1.5) {
     $clothesPicsFigure.each((i) => {
 
@@ -40,6 +46,7 @@ function gridElementFadeIn(wScroll) {
     })
   }
 
+  // constroles movement of "Fall suits"
   if (wScroll > $largeWindow.offset().top - $window.height()) {
     $largeWindow.css({
       'background-position': `center ${wScroll - $largeWindow.offset().top }px`
@@ -47,6 +54,19 @@ function gridElementFadeIn(wScroll) {
 
     $windowTint.css({
       opacity: (wScroll - $largeWindow.offset().top + 400) / (wScroll / 5)
+    })
+  }
+
+  // controles movement of the blog post articles
+  if (wScroll > $blogPosts.offset().top - $window.height()) {
+    const offset = Math.min(0, wScroll - $blogPosts.offset().top + $window.height() - 350)
+    
+    $post1.css({
+      transform: `translate(${offset}px, ${Math.abs(offset * 0.2)}px)`
+    })
+
+    $post3.css({
+      transform: `translate(${Math.abs(offset)}px, ${Math.abs(offset * 0.2)}px)`
     })
   }
 }
