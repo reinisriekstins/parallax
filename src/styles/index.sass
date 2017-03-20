@@ -1,5 +1,6 @@
 body
   font-family: "Open Sans", Sans-Serif
+  margin: 0px
 
 h1
   color: #ccc
@@ -8,7 +9,13 @@ h1
 figure
   margin: auto
 
+
 .content
+  position: relative
+  z-index: 2
+  background: white
+  margin-bottom: 400px
+
   article
     padding: 100px 0
     max-width: 640px
@@ -29,6 +36,7 @@ img
     // this here is why the image doesn't scroll
     attachment: fixed
   overflow: hidden
+  z-index: 2
 
 .logo
   height: 100px
@@ -112,6 +120,7 @@ img
     // MAGIC!
     attachment: fixed
   margin-top: 100px
+  margin-bottom: 100px
   border-radius: 50%
   position: relative
 
@@ -153,7 +162,9 @@ img
 
       &:hover
         background: white
-        color: black// posts
+        color: black
+
+// posts
 .blog-posts
   margin-top: 100px
 
@@ -171,3 +182,19 @@ img
 
   .post-3
     transform: translate(-100px, 20px)
+
+// footer
+footer
+  background: black
+  color: white
+  // padding: 40px 0
+  position: fixed
+  bottom: 0
+  width: 100%
+
+  .footer-stuff
+    max-width: 640px
+    margin: 0 auto
+
+  a
+    color: white
