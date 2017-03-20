@@ -15,7 +15,13 @@ const
   $post2 = $('.post-2'),
   $post3 = $('.post-3')
 
-gridElementFadeIn($window.scrollTop())
+let
+  postsTop = $blogPosts.offset().top,
+  winHeight = $window.height(),
+  windowScrollTop = $window.scrollTop()
+
+gridElementFadeIn(windowScrollTop)
+postsFadeIn(windowScrollTop)
 
 $window.scroll(() => {
   var wScroll = $window.scrollTop()
@@ -32,6 +38,7 @@ $window.scroll(() => {
   })
 
   gridElementFadeIn(wScroll)
+  postsFadeIn(wScroll)
 
 })
 
@@ -46,7 +53,7 @@ function gridElementFadeIn(wScroll) {
     })
   }
 
-  // constroles movement of "Fall suits"
+  // constrols movement of "Fall suits"
   if (wScroll > $largeWindow.offset().top - $window.height()) {
     $largeWindow.css({
       'background-position': `center ${wScroll - $largeWindow.offset().top }px`
@@ -56,17 +63,25 @@ function gridElementFadeIn(wScroll) {
       opacity: (wScroll - $largeWindow.offset().top + 400) / (wScroll / 5)
     })
   }
+}
 
-  // controles movement of the blog post articles
-  if (wScroll > $blogPosts.offset().top - $window.height()) {
-    const offset = Math.min(0, wScroll - $blogPosts.offset().top + $window.height() - 350)
-    
-    $post1.css({
-      transform: `translate(${offset}px, ${Math.abs(offset * 0.2)}px)`
-    })
+// controls movement of the blog post articles
+function postsFadeIn(wScroll) {
+  let goal = postsTop - winHeight / 8
+  let offset
 
-    $post3.css({
-      transform: `translate(${Math.abs(offset)}px, ${Math.abs(offset * 0.2)}px)`
-    })
+  if (wScroll < goal) {
+    offset = Math.min(0.005*Math.pow(wScroll - goal, 2), winHeight)
   }
+  else {
+    offset = 0
+  }
+
+  $post1.css({
+    transform: `translate(${-offset}px, ${offset * 0.2}px)`
+  })
+
+  $post3.css({
+    transform: `translate(${offset}px, ${offset * 0.2}px)`
+  })
 }
