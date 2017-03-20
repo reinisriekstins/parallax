@@ -9,12 +9,37 @@ h1
 figure
   margin: auto
 
+// Skeleton CSS media queries
+// Larger than mobile
+@media (min-width: 400px)
+  .content
+    margin-bottom: 680px
+
+// Larger than phablet
+@media (min-width: 550px)
+  .content
+    margin-bottom: 680px
+
+// Larger than tablet
+@media (min-width: 750px)
+  .content
+    margin-bottom: 400px
+
+// Larger than desktop
+@media (min-width: 1000px)
+  .content
+    margin-bottom: 400px
+
+// Larger than Desktop HD
+@media (min-width: 1200px)
+  .content
+    margin-bottom: 400px
+
 
 .content
   position: relative
   z-index: 2
   background: white
-  margin-bottom: 400px
 
   article
     padding: 100px 0
@@ -187,7 +212,7 @@ img
 footer
   background: black
   color: white
-  // padding: 40px 0
+  padding: 40px 0
   position: fixed
   bottom: 0
   width: 100%
